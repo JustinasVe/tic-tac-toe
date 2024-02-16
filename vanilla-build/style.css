@@ -24,11 +24,11 @@ body {
 }
 
 body {
-    padding: 90px 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  padding: 90px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .grid {
@@ -39,18 +39,57 @@ body {
 }
 
 @media (min-width: 768px) {
-    .grid {
-        width: 490px;
-        grid-template-columns: repeat(3, 150px);
-        grid-template-rows: 50px repeat(3, 150px) 60px;
-        gap: 20px;
-    }
+  .grid {
+    width: 490px;
+    grid-template-columns: repeat(3, 150px);
+    grid-template-rows: 50px repeat(3, 150px) 60px;
+    gap: 20px;
+  }
 }
 
 .turn {
-  background-color: var(--yellow);
+  color: var(--yellow);
   grid-column-start: 1;
   grid-column-end: 3;
+  align-self: center;
+
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+@keyframes turn-text-animation {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 100%;
+    transform: translateX(0);
+  }
+}
+
+.turn p {
+    font-size: 14px;
+    animation: 0.6s ease-in-out turn-text-animation;
+}
+
+@keyframes turn-icon-animation {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.turn i {
+    font-size: 1.8rem;
+    margin-left: 10px;
+    animation: 0.6s ease-in-out turn-icon-animation;
 }
 
 .actions {
