@@ -70,8 +70,8 @@ body {
 }
 
 .turn p {
-    font-size: 14px;
-    animation: 0.6s ease-in-out turn-text-animation;
+  font-size: 14px;
+  animation: 0.6s ease-in-out turn-text-animation;
 }
 
 @keyframes turn-icon-animation {
@@ -87,9 +87,9 @@ body {
 }
 
 .turn i {
-    font-size: 1.8rem;
-    margin-left: 10px;
-    animation: 0.6s ease-in-out turn-icon-animation;
+  font-size: 1.8rem;
+  margin-left: 10px;
+  animation: 0.6s ease-in-out turn-icon-animation;
 }
 
 .actions {
