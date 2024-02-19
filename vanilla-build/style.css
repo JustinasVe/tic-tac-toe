@@ -8,6 +8,7 @@
   --light-gray: #d3d3d3;
   --white: #ffffff;
   --dark-bluish-gray: #203139;
+  --dark-greenish-blue: #2a4544;
 }
 
 * {
@@ -192,4 +193,38 @@ button:hover {
 .score span {
   font-size: 12px;
   margin-top: 2px;
+}
+
+/* Modal styles - opens when game finishes */
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+  height: 150px;
+  width: 100%;
+  max-width: 300px;
+  background-color: var(--dark-greenish-blue);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  color: var(--white);
+  margin: 10px;
+}
+
+.modal-content button {
+  background-color: var(--turquoise);
+  border-radius: 3px;
+  color: var(--dark-greenish-blue);
+  padding: 10px;
 }
