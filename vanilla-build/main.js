@@ -5,11 +5,11 @@ const App = {
     menuItems: document.querySelector(".items")
   },
 
-  init: () => {
+  init() {
     App.$.menu.addEventListener("click", (event) => {
       App.$.menuItems.classList.toggle("hidden");
     });
   }
 };
 
-window.addEventListener('load', () => App.init());
+window.addEventListener('load', App.init);
