@@ -31,12 +31,6 @@ const App = {
 
     App.$.squares.forEach((square) => {
       square.addEventListener("click", (event) => {
-        console.log(`Square with id ${event.target.id} was clicked`);
-        console.log(`Current player is ${App.state.currentPlayer}`);
-
-        console.log('Square', square);
-        console.log('Event target:', event.target);
-
         if (square.hasChildNodes()) {
           return;
         }
