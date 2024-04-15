@@ -34,7 +34,10 @@ const App = {
         console.log(`Square with id ${event.target.id} was clicked`);
         console.log(`Current player is ${App.state.currentPlayer}`);
 
-        if (event.target.hasChildNodes()) {
+        console.log('Square', square);
+        console.log('Event target:', event.target);
+
+        if (square.hasChildNodes()) {
           return;
         }
 
@@ -50,7 +53,7 @@ const App = {
 
         App.state.currentPlayer = App.state.currentPlayer === 1 ? 2 : 1;
 
-        event.target.replaceChildren(icon);
+        square.replaceChildren(icon);
       });
     });
   },
