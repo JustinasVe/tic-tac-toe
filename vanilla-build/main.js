@@ -9,7 +9,7 @@ const App = {
   },
 
   state: {
-    currentPlayer: 1,
+    moves: [],
   },
 
   init() {
@@ -31,11 +31,25 @@ const App = {
 
     App.$.squares.forEach((square) => {
       square.addEventListener("click", (event) => {
-        if (square.hasChildNodes()) {
+        // Check if there is already a play, if so, return early
+        const hasMove = (squareId) => {
+          const existingMove = App.state.moves.find(
+            (move) => move.squareId === squareId
+          );
+          return existingMove !== undefined;
+        };
+
+        if (hasMove(+square.id)) {
           return;
         }
 
-        const currentPlayer = App.state.currentPlayer;
+        // Determine which player icon to add to the square
+        const lastMove = App.state.moves.at(-1);
+        const getOppositePlayer = (playerId) => (playerId === 1 ? 2 : 1);
+        const currentPlayer =
+          App.state.moves.length === 0
+            ? 1
+            : getOppositePlayer(lastMove.playerId);
 
         const icon = document.createElement("i");
 
@@ -45,7 +59,10 @@ const App = {
           icon.classList.add("ph-bold", "ph-circle", "turquoise");
         }
 
-        App.state.currentPlayer = App.state.currentPlayer === 1 ? 2 : 1;
+        App.state.moves.push({
+          squareId: +square.id,
+          playerId: currentPlayer,
+        });
 
         square.replaceChildren(icon);
       });
