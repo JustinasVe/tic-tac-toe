@@ -6,6 +6,9 @@ const App = {
     resetBtn: document.querySelector('[data-id="reset-btn"]'),
     newRoundBtn: document.querySelector('[data-id="new-round-btn"]'),
     squares: document.querySelectorAll('[data-id="square"]'),
+    modal: document.querySelector('[data-id="modal"]'),
+    modalText: document.querySelector('[data-id="modal-text"]'),
+    modalBtn: document.querySelector('[data-id="modal-btn"]'),
   },
 
   state: {
@@ -64,6 +67,12 @@ const App = {
       console.log("Add a new round");
     });
 
+    App.$.modalBtn.addEventListener("click", (event) => {
+      App.state.moves = [];
+      App.$.squares.forEach(square => square.replaceChildren());
+      App.$.modal.classList.add('hidden');
+    })
+
     App.$.squares.forEach((square) => {
       square.addEventListener("click", (event) => {
         // Check if there is already a play, if so, return early
@@ -105,11 +114,16 @@ const App = {
         const game = App.getGameStatus(App.state.moves);
 
         if (game.status === "complete") {
+          App.$.modal.classList.remove("hidden");
+
+          let message = "";
           if (game.winner) {
-            alert(`Player ${game.winner} wins!`);
+            message = `Player ${game.winner} wins!`;
           } else {
-            alert("Tie!");
+            message = "Tie game!";
           }
+
+          App.$.modalText.textContent = message;
         }
       });
     });
