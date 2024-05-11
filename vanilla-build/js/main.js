@@ -176,14 +176,20 @@ function init() {
     console.log(event);
   });
 
-  view.bindPlayerMoveEvent((event) => {
-    const clickedSquare = event.target;
+  view.bindPlayerMoveEvent((square) => {
+    const existingMove = store.game.moves.find(
+      (move) => move.squareId === +square.id
+    );
+
+    if (existingMove) {
+      return;
+    }
 
     // Place an icon of the CURRENT player in a square
-    view.handlePlayerMove(clickedSquare, store.game.currentPlayer);
+    view.handlePlayerMove(square, store.game.currentPlayer);
 
     // Advance to the next state by pushing a move to the moves array
-    store.playerMove(+clickedSquare.id);
+    store.playerMove(+square.id);
 
     // Set the NEXT player's turn indicator
     view.setTurnIndicator(store.game.currentPlayer); // Since the playerMove() method has updated the current player, store.game.currentPlayer now refers to a different player than the one used in the handlePlayerMove() method.
