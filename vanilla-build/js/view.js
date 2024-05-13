@@ -27,6 +27,7 @@ export default class View {
 
   bindGameResetEvent(handler) {
     this.$.resetBtn.addEventListener("click", handler);
+    this.$.modalBtn.addEventListener("click", handler);
   }
 
   bindNewRoundEvent(handler) {
@@ -46,6 +47,16 @@ export default class View {
   openModal(message) {
     this.$.modal.classList.remove("hidden");
     this.$.modalText.innerText = message;
+  }
+
+  closeModal() {
+    this.$.modal.classList.add("hidden");
+  }
+
+  clearMoves() {
+    this.$$.squares.forEach((square) => {
+      square.replaceChildren();
+    });
   }
 
   #toggleMenu() {
