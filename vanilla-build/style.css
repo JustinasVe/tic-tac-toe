@@ -173,7 +173,7 @@ button:hover {
 }
 
 .player-1 {
-  background-color: var(--turquoise);
+  background-color: var(--yellow);
 }
 
 .ties {
@@ -181,7 +181,7 @@ button:hover {
 }
 
 .player-2 {
-  background-color: var(--yellow);
+  background-color: var(--turquoise);
 }
 
 .score {
