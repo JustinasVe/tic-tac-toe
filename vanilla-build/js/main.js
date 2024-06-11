@@ -20,33 +20,21 @@ function init() {
   const view = new View();
   const store = new Store("tic-tac-toe-storage-key", players);
 
-  function initView() {
-    view.closeAll();
-    view.clearMoves();
-    view.setTurnIndicator(store.game.currentPlayer);
-    view.updateScoreboard(
-      store.stats.playerWithStats[0].wins,
-      store.stats.playerWithStats[1].wins,
-      store.stats.ties
-    );
-    view.initializeMoves(store.game.moves);
-  }
-
   window.addEventListener("storage", () => {
     console.log("State changed from another tab");
-    initView();
+    view.render(store.game, store.stats);
   });
 
-  initView();
+  view.render(store.game, store.stats);
 
   view.bindGameResetEvent((event) => {
     store.reset();
-    initView();
+    view.render(store.game, store.stats);
   });
 
   view.bindNewRoundEvent((event) => {
     store.newRound();
-    initView();
+    view.render(store.game, store.stats);
   });
 
   view.bindPlayerMoveEvent((square) => {
@@ -58,24 +46,10 @@ function init() {
       return;
     }
 
-    // Place an icon of the CURRENT player in a square
-    view.handlePlayerMove(square, store.game.currentPlayer);
-
     // Advance to the next state by pushing a move to the moves array
     store.playerMove(+square.id);
 
-    if (store.game.status.isComplete) {
-      view.openModal(
-        store.game.status.winner
-          ? `${store.game.status.winner.name} wins!`
-          : "Tie!"
-      );
-
-      return;
-    }
-
-    // Set the NEXT player's turn indicator
-    view.setTurnIndicator(store.game.currentPlayer); // Since the playerMove() method has updated the current player, store.game.currentPlayer now refers to a different player than the one used in the handlePlayerMove() method.
+    view.render(store.game, store.stats);
   });
 }
 
