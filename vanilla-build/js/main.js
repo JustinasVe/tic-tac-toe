@@ -43,6 +43,8 @@ function init() {
   });
 
   view.bindPlayerMoveEvent((square) => {
+    console.log(square);
+
     const existingMove = store.game.moves.find(
       (move) => move.squareId === +square.id
     );
